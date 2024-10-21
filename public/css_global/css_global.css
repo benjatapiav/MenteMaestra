@@ -1,0 +1,41 @@
+body{
+    background-color: bisque;
+    font-family: sans-serif;
+    margin:0px;
+}
+
+header{
+    margin-top: 20px;
+    display:flex;
+    height: 200px;
+    align-items: center;
+
+}
+
+header img{
+    height: 60px;
+}
+
+header img:hover{
+    height: 65px;
+}
+
+header input{
+    width: 300px;
+    border:none;   
+    outline:none;
+    border-radius: 30px;
+    background-color: rgb(255, 255, 255);
+    padding: 20px;
+    font-size: 22px;
+}
+
+header div{
+    width: 700px;
+    gap: 30px;
+}
+
+.logo{
+    height: 180px;
+    border-radius: 100%;
+}
