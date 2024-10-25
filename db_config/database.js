@@ -1,10 +1,13 @@
-const mysql = require("promise-mysql")  ;
+// conexion servicio CURSOS
+const mysql = require("promise-mysql");
+const dotenv = require("dotenv");
+dotenv.config()
 
-const db = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: '960529@benemimar',
-    database: 'mentemaestra'
+const connection = mysql.createConnection({
+    host: process.env.host,
+    database: process.env.database,
+    user: process.env.user,
+    password: process.env.password
 })
 
 const getConnection = async ()=> await connection;
@@ -12,3 +15,4 @@ const getConnection = async ()=> await connection;
 module.exports = {
     getConnection
 }
+

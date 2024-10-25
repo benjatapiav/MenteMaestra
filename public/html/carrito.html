@@ -1,19 +1,119 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Carrito de Compras</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px;
+            border-bottom: 1px solid #eee;
+        }
+        .cart-item:last-child {
+            border-bottom: none;
+        }
+        .item-details {
+            display: flex;
+            align-items: center;
+        }
+        .item-details img {
+            width: 50px;
+            height: 50px;
+            margin-right: 10px;
+            border-radius: 5px;
+        }
+        .item-details div {
+            margin-left: 10px;
+        }
+        .item-price {
+            font-weight: bold;
+            color: #333;
+        }
+        .total {
+            font-size: 1.2em;
+            font-weight: bold;
+            text-align: right;
+            margin-top: 20px;
+        }
+        .checkout-button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.1em;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+        .checkout-button:hover {
+            background: #218838;
+        }
+    </style>
 </head>
 <body>
-    <header>
 
-    </header>
-    <body>
-        
-    </body>
-    <footer>
-        
-    </footer>
+<div class="container">
+    <h1>Carrito de Compras</h1>
+    
+    <div class="cart-item">
+        <div class="item-details">
+            <img src="https://via.placeholder.com/50" alt="Producto 1">
+            <div>
+                <h4>Producto 1</h4>
+                <p>Cantidad: 1</p>
+            </div>
+        </div>
+        <div class="item-price">$10.00</div>
+    </div>
+    
+    <div class="cart-item">
+        <div class="item-details">
+            <img src="https://via.placeholder.com/50" alt="Producto 2">
+            <div>
+                <h4>Producto 2</h4>
+                <p>Cantidad: 2</p>
+            </div>
+        </div>
+        <div class="item-price">$20.00</div>
+    </div>
+    
+    <div class="cart-item">
+        <div class="item-details">
+            <img src="https://via.placeholder.com/50" alt="Producto 3">
+            <div>
+                <h4>Producto 3</h4>
+                <p>Cantidad: 1</p>
+            </div>
+        </div>
+        <div class="item-price">$15.00</div>
+    </div>
+    
+    <div class="total">Total: $45.00</div>
+    
+    <button class="checkout-button">Proceder a la Compra</button>
+</div>
+
 </body>
 </html>

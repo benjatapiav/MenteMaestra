@@ -1,0 +1,93 @@
+/*Estilo de Login*/
+
+.loginFormulario{
+    justify-content: center;
+    align-items: center;
+    max-width: 200px;
+    height: auto;
+    display:flex;
+    flex-direction: column;
+    margin: 0 auto;
+    margin-top: 60px;
+    margin-bottom: 60px;
+    padding: 60px;
+    box-shadow: 0 0 4px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 5%;
+
+}
+/*Estilo imagen del login*/
+.loginFormulario img{
+    height: 30px;
+
+/*Estilo inputs del login*/    
+}
+.loginFormulario input{
+    padding:10px;
+    margin: 5px;
+}
+
+/*Estilo boton submit del login*/
+.loginFormulario button{
+    box-shadow: 0 0 2px rgba(0,0,0,0.9);
+    padding: 8px;
+    margin: 8px;
+    border: none;
+}
+.loginFormulario button:hover{
+    box-shadow: 0 0 5px rgba(0,0,0,0.5);
+    
+    color:rgb(156, 156, 156);
+}
+/*Estilo links del login*/
+.loginFormulario a{
+    margin: 5px;
+    text-decoration: none;
+    color: black;
+}
+.loginFormulario a:hover{
+    color: brown;
+}
+
+/*--------------------------------*/
+
+/*Estilo Registro*/
+/*Estilo de Login*/
+
+#registroFormulario{
+    justify-content: center;
+    align-items: center;
+    max-width: 200px;
+    height: auto;
+    display:flex;
+    flex-direction: column;
+    margin: 0 auto;
+    margin-top: 60px;
+    margin-bottom: 60px;
+    padding: 60px;
+    box-shadow: 0 0 4px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 5%;
+
+}
+/*Estilo imagen del login*/
+#registroFormulario img{
+    height: 30px;
+
+/*Estilo inputs del login*/    
+}
+#registroFormulario input{
+    padding:10px;
+    margin: 5px;
+}
+
+/*Estilo boton submit del login*/
+#registroFormulario button{
+    box-shadow: 0 0 2px rgba(0,0,0,0.9);
+    padding: 8px;
+    margin: 8px;
+    border: none;
+}
+#registroFormulario button:hover{
+    box-shadow: 0 0 5px rgba(0,0,0,0.5);
+    
+    color:rgb(156, 156, 156);
+}

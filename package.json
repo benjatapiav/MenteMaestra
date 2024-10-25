@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "main": "servidor.js",
   "scripts": {
-    "dev": "nodemon servidor.js"
+    "dev:cursos": "nodemon servidor.js",
+    "dev:usuarios": "nodemon servidor_usuarios.js",
+    "dev:gateway":"nodemon apigetway/apigetway.js"
   },
   "keywords": [],
   "author": "",
@@ -13,7 +15,9 @@
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
     "express": "^4.21.1",
+    "http-proxy-middleware": "^3.0.3",
     "mysql": "^2.18.1",
+    "mysql2": "^3.11.3",
     "promise-mysql": "^5.2.0"
   },
   "devDependencies": {
