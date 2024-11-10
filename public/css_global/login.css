@@ -91,3 +91,13 @@
     
     color:rgb(156, 156, 156);
 }
+#registroFormulario select{
+    margin: 5px;
+    padding: 5px;
+}
+
+
+label{
+    font-size: 10px;
+    
+}

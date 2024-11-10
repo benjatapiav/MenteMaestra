@@ -10,12 +10,12 @@ app.use(cors());
 
 // Conexion entre APIgetway y ApiRest
 app.use("/api/usuarios", createProxyMiddleware({
-  target: "http://localhost:5501",
+  target: "http://localhost:5501/usuarios",
   changeOrigin: true
 }));
 
 app.use("/api/cursos", createProxyMiddleware({
-  target: "http://localhost:5500",
+  target: "http://localhost:5500/cursos",
   changeOrigin: true
 }));
 

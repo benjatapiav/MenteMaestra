@@ -1,5 +1,5 @@
 const express = require("express");
-const database = require("./db_config/database");  // Asegúrate de que esta ruta esté bien configurada
+const database = require("./db_config/database");  
 const morgan = require("morgan");
 const cors = require("cors");
 
@@ -12,28 +12,46 @@ app.listen(app.get("port"), () => {
 
 app.use(morgan("dev"));
 app.use(cors());
-app.use(express.json());  // Middleware para parsear JSON
+app.use(express.json());  
 
-// Rutas
-app.get("/usuarios", async (req, res) => {
-    try {
-        const connection = await database.getConnection();
-        const [result] = await connection.query("SELECT * FROM USUARIOS WHERE id_usuarios >= 1");
-        res.json(result);
-    } catch (error) {
-        console.error('Error al obtener usuarios:', error);
-        res.status(500).json({ message: 'Error al obtener usuarios' });
-    }
-});
+// Registrar usuario
+app.post('/usuarios', async (req,res) =>{ 
 
-app.post("/usuarios", async (req, res) => {
-    try {
-        const { nombre, apellido, correo, clave, rol, nombreCanal, categoria } = req.body;
+    try{
+        const {tipoUsuario, rutEstudiante,nombreEstudiante,apellidoEstudiante
+            ,correoEstudiante,claveEstudiante,rutProfesor,nombreProfesor,
+            apellidoProfesor,correoProfesor,claveProfesor,nombreCanal,categoria} = req.body; //Guardamos todos los valores que aparecen en el formulario
+
         const connection = await database.getConnection();
-        await connection.query("INSERT INTO USUARIOS(nombre, apellido, correo, rol, clave, nombreCanal, categoria) VALUES(?,?,?,?,?,?,?)", [nombre, apellido, correo, rol, clave, nombreCanal, categoria]);
-        res.status(201).json({ message: 'Usuario creado exitosamente' });
-    } catch (error) {
-        console.error('Error al insertar usuario:', error);
-        res.status(500).json({ message: 'Error al registrar usuario' });
+        //Determinar los valores de RUT y Tabla segun corresponda
+        let valorRut;
+        // Verificacion de si el RUT ya extiste en la BBDD
+        if(tipoUsuario === 'estudiante'){
+            valorRut = await connection.query('SELECT rut FROM estudiantes WHERE rut = ?',[rutEstudiante]);
+            if(valorRut.length > 0){ //Condicion para usuario existente en tabla estudiantes
+                res.status(409).json({message: 'Usuario ya existe'});
+            } else{
+                await connection.query('INSERT INTO estudiantes (rut,nombre,apellido,correo,clave) VALUES (?,?,?,?,?)',[rutEstudiante,nombreEstudiante,
+                apellidoEstudiante,correoEstudiante,claveEstudiante]);
+                res.status(201).json({message: 'Estudiante registrado exitosamente'});
+            }
+        }
+        else if(tipoUsuario === 'profesor'){
+            valorRut = await connection.query('SELECT rut FROM profesores WHERE rut = ?',[rutProfesor]);
+            if(valorRut.length > 0){ //Condicion para usuario existente en tabla profesores
+                res.status(409).json({message: ' Usuario ya existe'});
+            }else{
+                await connection.query('INSERT INTO profesores (rut,nombre,apellido,correo,clave,nombreCanal,categoria) VALUES (?,?,?,?,?,?,?)',[rutProfesor,
+                nombreProfesor,apellidoProfesor,correoProfesor,claveProfesor,nombreCanal,categoria]);
+                res.status(201).json({message: 'Profesor registrado exitosamente'});
+            }
+        }
+        else{
+            res.status(400).json({message: 'Rol no valido'});
+        }
+    }catch(error){
+        console.error('Error al Registrar usuario',error);
+        res.status(201).json({message: 'Error al registrar usuario'});
     }
-});
+
+})

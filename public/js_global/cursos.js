@@ -1,4 +1,4 @@
-// Asegúrate de que esta función esté definida
+// Conseguir informacion de cursos
 async function getCursos() {
     try {
         const res = await fetch("http://localhost:5500/cursos");
@@ -31,3 +31,5 @@ function crearTarjetasCursos(cursos) {
 getCursos().then(cursos => {
     crearTarjetasCursos(cursos);
 });
+
+

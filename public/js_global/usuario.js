@@ -1,4 +1,39 @@
 
+function mostrarFormulario(){
+    const tipoUsuario = document.getElementById("tipoUsuario").value;
+    const formularioEstudiante = document.getElementById("formularioEstudiante");
+    const formularioProfesor = document.getElementById("formularioProfesor");
+
+    if (tipoUsuario === "estudiante"){
+        formularioEstudiante.style.display = "block";
+        formularioProfesor.style.display = "none";
+        mostrarCampo(formularioEstudiante, true);
+        mostrarCampo(formularioProfesor, false);
+
+    }else if(tipoUsuario === 'profesor'){
+        formularioEstudiante.style.display = "none";
+        formularioProfesor.style.display = "block";
+        mostrarCampo(formularioEstudiante, false);
+        mostrarCampo(formularioProfesor, true);
+
+    }else{
+        console.log('rol no valido');
+    }
+}
+
+function mostrarCampo(formulario, habilitar){
+    const campos = formulario.querySelectorAll("input,select");
+    campos.forEach(campo => {
+        campo.disabled = !habilitar;
+    });
+}
+
+window.addEventListener('load', function() {
+    mostrarFormulario(); // Mostrar el formulario correcto al cargar
+});
+
+// --------------------------------------------------------------------------------------------------- //
+
 document.getElementById("registroFormulario").addEventListener('submit', async (event) => {
     event.preventDefault();
 
@@ -6,31 +41,30 @@ document.getElementById("registroFormulario").addEventListener('submit', async (
     const tipoUsuario = document.getElementById('tipoUsuario').value;
 
     //crear objeto usuario
-    let usuarioData;
+    let usuarioData ={};
 
-    if(tipoUsuario === 'estudiante') {
+    if(tipoUsuario === 'estudiante') { //Si el valor tipoUsuario es estudiante, guarda los valores del campo
         usuarioData = {
-
-            nombre: document.getElementById('nombreEstudiante').value,
-            apellido: document.getElementById('apellidoEstudiante').value,
-            correo: document.getElementById('correoEstudiante').value,
-            clave: document.getElementById('claveEstudiante').value,
-            rol: 'estudiante',
-            nombreCanal: null, //estudiante no tiene canal
-            categoria: null // estudiante no tiene categoria
+            tipoUsuario: tipoUsuario,
+            rutEstudiante: document.getElementById('rutEstudiante').value,
+            nombreEstudiante: document.getElementById('nombreEstudiante').value,
+            apellidoEstudiante: document.getElementById('apellidoEstudiante').value,
+            correoEstudiante: document.getElementById('correoEstudiante').value,
+            claveEstudiante: document.getElementById('claveEstudiante').value
         };
-    }else if (tipoUsuario === 'profesor'){
+    }else if(tipoUsuario === 'profesor'){ //Si el valor tipoUsuario es profesor, guarda los valores del campo
         usuarioData = {
-            nombre: document.getElementById('nombreProfesor').value,
-            apellido: document.getElementById('apellidoProfesor').value,
-            correo: document.getElementById('correoProfesor').value,
-            clave: document.getElementById('claveProfesor').value,
-            rol: 'profesor',
+            tipoUsuario: tipoUsuario,
+            rutProfesor: document.getElementById('rutProfesor').value,
+            nombreProfesor: document.getElementById('nombreProfesor').value,
+            apellidoProfesor: document.getElementById('apellidoProfesor').value,
+            correoProfesor: document.getElementById('correoProfesor').value,
+            claveProfesor: document.getElementById('claveProfesor').value,
             nombreCanal: document.getElementById('nombreCanal').value,
-            categoria: document.getElementById('categoria').value,
+            categoria: document.getElementById('categoria').value
         };
     }
-    try {
+    try { //manejo de consulta en url
         const response = await fetch('http://localhost:5501/usuarios', {
             method: 'POST',
             headers: {
@@ -42,7 +76,7 @@ document.getElementById("registroFormulario").addEventListener('submit', async (
         if (response.ok) {
             const result = await response.json();
             alert('Usuario registrado exitosamente');
-            // Redirigir o hacer algo después del registro
+            document.getElementById("registroFormulario").reset(); //Resetear los campos
         } else {
             const error = await response.json();
             alert('Error al registrar usuario: ' + error.message);

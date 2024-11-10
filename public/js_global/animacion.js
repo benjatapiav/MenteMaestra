@@ -21,24 +21,3 @@ document.getElementById('menu').addEventListener('mouseout', function() {
 });
 
 
-
-//-----------------------------------------------------------------------------------
-// Mostrar formulario Registro
-
-function mostrarFormulario(){
-    const tipoUsuario = document.getElementById("tipoUsuario").value;
-    const formularioEstudiante = document.getElementById("formularioEstudiante");
-    const formularioProfesor = document.getElementById("formularioProfesor");
-
-    if (tipoUsuario === "estudiante"){
-        formularioEstudiante.style.display = "block";
-        formularioProfesor.style.display = "none";
-
-    }else{
-        formularioEstudiante.style.display = "none";
-        formularioProfesor.style.display = "block"
-
-    }
-}
-
-document.addEventListener("DOMContentLoaded",mostrarFormulario);
