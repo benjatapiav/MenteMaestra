@@ -1,6 +1,6 @@
 /*Estilo de Login*/
 
-.loginFormulario{
+#loginFormulario{
     justify-content: center;
     align-items: center;
     max-width: 200px;
@@ -16,35 +16,35 @@
 
 }
 /*Estilo imagen del login*/
-.loginFormulario img{
+#loginFormulario img{
     height: 30px;
 
 /*Estilo inputs del login*/    
 }
-.loginFormulario input{
+#loginFormulario input{
     padding:10px;
     margin: 5px;
 }
 
 /*Estilo boton submit del login*/
-.loginFormulario button{
+#loginFormulario button{
     box-shadow: 0 0 2px rgba(0,0,0,0.9);
     padding: 8px;
     margin: 8px;
     border: none;
 }
-.loginFormulario button:hover{
+#loginFormulario button:hover{
     box-shadow: 0 0 5px rgba(0,0,0,0.5);
     
     color:rgb(156, 156, 156);
 }
 /*Estilo links del login*/
-.loginFormulario a{
+#loginFormulario a{
     margin: 5px;
     text-decoration: none;
     color: black;
 }
-.loginFormulario a:hover{
+#loginFormulario a:hover{
     color: brown;
 }
 

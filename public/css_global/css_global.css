@@ -5,7 +5,11 @@ body{
     font-family: sans-serif;
     margin:0px;
     height: 150px;
-
+}
+body h1{
+    font-size: 15px;
+    margin-top: 30px;
+    margin-left:170px;
 }
 
 /* ----- Header ----- */
@@ -28,7 +32,9 @@ header img:hover:not(.logo,.MenteMaestra){
     height: 32px;
     cursor: pointer;
 }
-
+header h1{
+    font-size: 15px;
+}
 /* Estilo del logo */
 
 .logo{

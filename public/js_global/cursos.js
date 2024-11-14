@@ -1,7 +1,7 @@
 // Conseguir informacion de cursos
 async function getCursos() {
     try {
-        const res = await fetch("http://localhost:5500/cursos");
+        const res = await fetch("http://localhost:5500/cursos/obtener");
         const resJson = await res.json();
         return resJson;
     } catch (error) {
@@ -21,7 +21,7 @@ function crearTarjetasCursos(cursos) {
             <p>${curso.descripcion}</p>
             <p>Precio: $${curso.precio}</p>
             <p>Calificación: ${curso.calificacion}</p>
-            <button>Agregar al carrito</button>
+            <button>Agregar al carrito()</button>
         `;
         contenedorCursos.appendChild(nuevoCurso);
     });

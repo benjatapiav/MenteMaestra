@@ -1,7 +1,10 @@
+// LLamando las dependencias a usar
 const express = require("express");
 const database = require("./db_config/database");  
 const morgan = require("morgan");
 const cors = require("cors");
+const jwt = require('jsonwebtoken');
+const bcrypt = require('bcryptjs');
 
 // Configuración inicial
 const app = express();
@@ -15,14 +18,17 @@ app.use(cors());
 app.use(express.json());  
 
 // Registrar usuario
-app.post('/usuarios', async (req,res) =>{ 
+app.post('/usuarios/registro', async (req,res) =>{ 
 
     try{
         const {tipoUsuario, rutEstudiante,nombreEstudiante,apellidoEstudiante
             ,correoEstudiante,claveEstudiante,rutProfesor,nombreProfesor,
             apellidoProfesor,correoProfesor,claveProfesor,nombreCanal,categoria} = req.body; //Guardamos todos los valores que aparecen en el formulario
-
+            
         const connection = await database.getConnection();
+            
+        const hashedClaveEstudiante = await bcrypt.hash(claveEstudiante, 10);
+        const hashedClaveProfesor = await bcrypt.hash(claveProfesor, 10);
         //Determinar los valores de RUT y Tabla segun corresponda
         let valorRut;
         // Verificacion de si el RUT ya extiste en la BBDD
@@ -54,4 +60,57 @@ app.post('/usuarios', async (req,res) =>{
         res.status(201).json({message: 'Error al registrar usuario'});
     }
 
-})
+});
+//------------------------------------------------------------------------------------------------------------------
+// logear usuario
+//Encontrar usuario segun correo
+
+app.post('/usuarios/login', async (req,res)=>{
+
+    const {correo,clave} = req.body;
+    
+
+    try{
+        console.log('correo: ',correo,'Clave: ',clave);
+        //Genera coneccion
+        console.log('intentando conectar a la base de datos');
+        const connection = await database.getConnection();
+        console.log('Conexion a la base de datos exitosa');
+        //Crea un arreglo con los valores de correo del usuario que corresponda
+        const [usuarios] = await connection.query(`
+            SELECT correo,clave,nombre,apellido FROM estudiantes WHERE correo = ? 
+            UNION 
+            SELECT correo,clave,nombre,apellido FROM profesores WHERE correo = ?
+            `, [correo, correo]);
+            
+            console.log('Ejecucion de consulta por correo: ',correo,' exitosa');
+            
+
+            // Verifica si usuarios obtuvo los datos de la consulta query
+            if (usuarios.length === 0){
+                console.log('Usuario no encontrado')
+                return res.status(401).json({message: ' Usuario no encontrado'});
+            }else{
+                console.log('Existen valores');
+                console.log('usuarios encontrados: ',usuarios);
+            };
+
+            if(usuarios.clave === clave ){
+                console.log('clave correcta');
+                res.json({
+                    message: 'Login exitoso',
+                    usuario:{
+                        correo: usuarios.correo,
+                        nombre: usuarios.nombre,
+                        apellido: usuarios.apellido
+                    }
+                });
+            }else{
+                return res.status(401).json({ message: 'Correo o Clave incorrecta' });
+            }
+               
+    }catch (error){
+        console.error('Error en el login: ',error);
+        res.status(500).json({message: 'Error en el servidor'});
+    }
+});

@@ -1,10 +1,12 @@
 
+//Mostrar el formulario correspondiente segun el usuario que quiere registrar
 function mostrarFormulario(){
     const tipoUsuario = document.getElementById("tipoUsuario").value;
     const formularioEstudiante = document.getElementById("formularioEstudiante");
     const formularioProfesor = document.getElementById("formularioProfesor");
 
-    if (tipoUsuario === "estudiante"){
+    //Si el tipo de usuario es estudiante muestra el formulario correspondiente y extrae los campos de este
+    if (tipoUsuario === "estudiante"){ 
         formularioEstudiante.style.display = "block";
         formularioProfesor.style.display = "none";
         mostrarCampo(formularioEstudiante, true);
@@ -20,7 +22,7 @@ function mostrarFormulario(){
         console.log('rol no valido');
     }
 }
-
+// funcion para tomar los campos correspondientes segun usuario
 function mostrarCampo(formulario, habilitar){
     const campos = formulario.querySelectorAll("input,select");
     campos.forEach(campo => {
@@ -33,7 +35,7 @@ window.addEventListener('load', function() {
 });
 
 // --------------------------------------------------------------------------------------------------- //
-
+//Adquirir valores de usuarios segun corresponda
 document.getElementById("registroFormulario").addEventListener('submit', async (event) => {
     event.preventDefault();
 
@@ -65,7 +67,7 @@ document.getElementById("registroFormulario").addEventListener('submit', async (
         };
     }
     try { //manejo de consulta en url
-        const response = await fetch('http://localhost:5501/usuarios', {
+        const response = await fetch('http://localhost:5501/usuarios/registro', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -86,3 +88,6 @@ document.getElementById("registroFormulario").addEventListener('submit', async (
         alert('Hubo un problema con la solicitud');
     }
 });
+//----------------------------------------------------------------------------------------------------------------
+// Manejo de logeo
+
