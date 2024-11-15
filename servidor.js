@@ -8,6 +8,7 @@ const app = express();
 app.set("port",5500);
 app.listen(app.get("port"), ()=>{
     console.log('Escuchando comunicaciones al puerto: '+app.get('port'));
+    
 
 });
 
@@ -24,6 +25,7 @@ app.get("/cursos/obtener", async (req,res) => {
     const result = await connection.query("SELECT * FROM CURSOS WHERE id_curso >=1 AND id_curso <= 6");
     res.json(result)
     console.log(result);
+
     
 })
 // Obtener cursos comprados

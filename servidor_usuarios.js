@@ -27,8 +27,6 @@ app.post('/usuarios/registro', async (req,res) =>{
             
         const connection = await database.getConnection();
             
-        const hashedClaveEstudiante = await bcrypt.hash(claveEstudiante, 10);
-        const hashedClaveProfesor = await bcrypt.hash(claveProfesor, 10);
         //Determinar los valores de RUT y Tabla segun corresponda
         let valorRut;
         // Verificacion de si el RUT ya extiste en la BBDD
