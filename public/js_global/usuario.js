@@ -89,5 +89,5 @@ document.getElementById("registroFormulario").addEventListener('submit', async (
     }
 });
 //----------------------------------------------------------------------------------------------------------------
-// Manejo de logeo
+
 

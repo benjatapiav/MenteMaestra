@@ -14,7 +14,7 @@
 <body>
     <header>
             <a href="index.html"><img src="../imagenes/logo.png" alt="" class="logo"></a>
-            <h1 id="mensajeBienvenido">Usuario no logeado</h1>
+            <a href="perfil_estudiante.html"><h1 id="mensajeBienvenido">Usuario no logeado</h1></a>
             <div class="iconos">
             <div id="menu">
             <img src="../imagenes/categoria.png" alt="" class="hamburger">
@@ -46,16 +46,7 @@
     <script src="../js_global/animacion.js"></script>
     <script src="../js_global/cursos.js"></script>
     <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            const mensajeBienvenido = document.getElementById('mensajeBienvenido');
 
-            const usuario = JSON.parse(localStorage.getItem("usuario"));
-            if(usuario){
-                mensajeBienvenido.textContent = `Sesion de ${usuario.nombre} ${usuario.apellido}`;
-            }else{
-                mensajeBienvenido.textContent = `Usuario Invitado`;
-            }
-        });
     </script>
     </body>
 

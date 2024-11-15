@@ -78,9 +78,9 @@ app.post('/usuarios/login', async (req,res)=>{
         console.log('Conexion a la base de datos exitosa');
         //Crea un arreglo con los valores de correo del usuario que corresponda
         const [usuarios] = await connection.query(`
-            SELECT correo,clave,nombre,apellido FROM estudiantes WHERE correo = ? 
+            SELECT id_estudiante AS userId, correo,clave,nombre,apellido FROM estudiantes WHERE correo = ? 
             UNION 
-            SELECT correo,clave,nombre,apellido FROM profesores WHERE correo = ?
+            SELECT id_profesor AS userId, correo,clave,nombre,apellido FROM profesores WHERE correo = ?
             `, [correo, correo]);
             
             console.log('Ejecucion de consulta por correo: ',correo,' exitosa');
@@ -100,6 +100,7 @@ app.post('/usuarios/login', async (req,res)=>{
                 res.json({
                     message: 'Login exitoso',
                     usuario:{
+                        userId: usuarios.userId,
                         correo: usuarios.correo,
                         nombre: usuarios.nombre,
                         apellido: usuarios.apellido

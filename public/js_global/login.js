@@ -23,10 +23,14 @@ document.addEventListener("DOMContentLoaded", () => {
             const data = await response.json();
             console.log('Respuesta del servidor: ',data);
 
-            localStorage.setItem("usuario", JSON.stringify(data.usuario));
+            if(data.usuario){
+                localStorage.setItem("usuario", JSON.stringify(data.usuario));
+                window.location.href = ' perfil_estudiante.html';
+            }else{
+                alert("Usuario no encontrado.");
+            }
             
 
-            window.location.href = ' index.html';
 
         }catch(error){
             console.error("Error en login: ", error);

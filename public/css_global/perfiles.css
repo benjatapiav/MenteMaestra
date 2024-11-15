@@ -1,0 +1,38 @@
+#contenedorCursos_Comprados{
+    display:flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: auto;
+}
+.curso{
+    max-width: 300px;
+    height: 300px;
+    margin: 10px;
+    text-align: center;
+    box-shadow: 0 0 5px rgba(0,0,0,0.5);
+}
+
+.curso:hover{
+    cursor:pointer;
+    background-color: rgb(236, 236, 236);
+    max-width: 302px;
+    box-shadow: 0 0 7px rgba(0,0,0,0.5);
+}
+.curso img{
+    height: 180px;
+    max-width: 100%;
+}
+.curso button{
+    width: 90px;
+    height: 30px;
+    font-size: 10px;
+}
+.curso h3{
+    font-size: 12px;
+    margin:0%;
+}
+.curso p{
+    max-width: 100%;
+    font-size: 10px;
+    font-family: sans-serif;
+}

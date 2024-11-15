@@ -21,3 +21,15 @@ document.getElementById('menu').addEventListener('mouseout', function() {
 });
 
 //----------------------------------------------------------------------------------------------------
+// Mostrar Usuario con sesion abierta
+
+document.addEventListener("DOMContentLoaded", () => {
+    const mensajeBienvenido = document.getElementById('mensajeBienvenido');
+
+    const usuario = JSON.parse(localStorage.getItem("usuario"));
+    if(usuario){
+        mensajeBienvenido.textContent = `Sesion de ${usuario.nombre} ${usuario.apellido}`;
+    }else{
+        mensajeBienvenido.textContent = `Usuario Invitado`;
+    }
+});
